@@ -1180,6 +1180,8 @@ function registerPlayer( type, object ) {
 			var oldplayer = document.getElementById("player");
 			var newplayer = document.createElement("video");
 			oldplayer.parentNode.replaceChild(newplayer,oldplayer);
+			newplayer.width = window.innerWidth;
+			newplayer.height= window.innerHeight;
 			newplayer.id = "player";
 			this.player = videojs("player",{width:window.innerWidth,height:window.innerHeight});
 			this.player.src(uri);
