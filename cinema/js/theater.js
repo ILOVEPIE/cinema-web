@@ -1182,14 +1182,14 @@ function registerPlayer( type, object ) {
 			oldplayer.parentNode.replaceChild(newplayer,oldplayer);
 			newplayer.id = "player";
 			this.player = videojs("player");
-			this.player.setSrc(uri);
-			this.player.setCurrentTime(this.startTime||0);
+			this.player.src(uri);
+			this.player.currentTime(this.startTime||0);
 			//this.player.play();
 		};
 
 		this.setVolume = function( volume ) {
 			if ( this.player !== null ) {
-				this.player.setVolume(volume);
+				this.player.volume(volume);
 			}
 		};
 
@@ -1200,7 +1200,7 @@ function registerPlayer( type, object ) {
 
 		this.seek = function( seconds ) {
 			if ( this.player !== null ) {
-				this.player.setCurrentTime(seconds);
+				this.player.currentTime(seconds);
 				this.player.play();
 			}
 		};
