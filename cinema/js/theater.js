@@ -1167,6 +1167,76 @@ function registerPlayer( type, object ) {
 
 	};
 	registerPlayer( "viooz", VioozVideo );
+	
+	var RoosterTeethVideo = function() {
+
+
+		/*
+			Standard Player Methods
+		*/
+		this.setVideo = function( uri ) {
+			this.videoId = uri;
+			if (player) { return; }
+			var oldplayer = document.getElementById("player");
+			var newplayer = document.createElement("video");
+			newplayer.style = oldplayer.style;
+			newplayer.className = oldplayer.className;
+			newplayer.id = newplayer.id;
+			oldplayer.parentNode.replaceChild(newplayer,oldplayer);
+			this.player = videojs("player");
+			this.player.setSrc(uri);
+			this.player.setCurrentTime(this.startTime||0);
+		};
+
+		this.setVolume = function( volume ) {
+			this.lastVolume = null;
+			this.volume = volume;
+		};
+
+		this.setStartTime = function( seconds ) {
+			this.lastStartTime = null;
+			this.startTime = seconds;
+		};
+
+		this.seek = function( seconds ) {
+			if ( this.player !== null ) {
+				this.player.setCurrentTime(seconds);
+				this.player.play();
+			}
+		};
+
+		this.onRemove = function() {
+			clearInterval( this.interval );
+		};
+
+		/*
+			Player Specific Methods
+		*/
+		this.getCurrentTime = function() {
+			if ( this.player !== null ) {
+				return this.player.getCurrentTime();
+			}
+		};
+
+		this.canChangeTime = function() {
+			return player.readyState() == 3;
+		};
+
+		this.think = function() {
+
+			if ( this.player !== null ) {
+				this.player.setVolume(this.volume);
+				this.player.play();
+			}
+
+		};
+
+		this.onReady = function() {
+			this.interval = setInterval( this.think.bind(this), 100 );
+		};
+
+	};
+	registerPlayer( "roosterteeth", RoosterTeethVideo );
 
 })();
 
