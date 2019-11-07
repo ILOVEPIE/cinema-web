@@ -1186,7 +1186,7 @@ function registerPlayer( type, object ) {
 			this.player = videojs("player");
 			this.player.setSrc(uri);
 			this.player.setCurrentTime(this.startTime||0);
-			this.player.play();
+			//this.player.play();
 		};
 
 		this.setVolume = function( volume ) {
