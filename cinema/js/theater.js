@@ -1184,7 +1184,7 @@ function registerPlayer( type, object ) {
 			newplayer.height= window.innerHeight;
 			newplayer.id = "player";
 			this.player = videojs("player",{width:window.innerWidth,height:window.innerHeight});
-			this.player.src(uri);
+			this.player.src({src:uri,type:'application/x-mpegURL'});
 			this.player.dimensions(window.innerWidth,window.innerHeight);
 			this.player.currentTime(this.startTime||0);
 			this.player.play();
