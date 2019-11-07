@@ -1183,8 +1183,7 @@ function registerPlayer( type, object ) {
 			newplayer.id = "player";
 			this.player = videojs("player",{width:window.innerWidth,height:window.innerHeight});
 			this.player.src(uri);
-			this.player.width(window.innerWidth);
-			this.player.width(window.innerHeight);
+			this.player.dimensions(window.innerWidth,window.innerHeight);
 			this.player.currentTime(this.startTime||0);
 			this.player.play();
 		};
