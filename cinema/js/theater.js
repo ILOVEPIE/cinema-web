@@ -1179,11 +1179,8 @@ function registerPlayer( type, object ) {
 			//if (player) { return; }
 			var oldplayer = document.getElementById("player");
 			var newplayer = document.createElement("video");
-			console.log(oldplayer.style,oldplayer.className,oldplayer.id);
-			newplayer.style = oldplayer.style;
-			newplayer.className = oldplayer.className;
-			newplayer.id = newplayer.id;
 			oldplayer.parentNode.replaceChild(newplayer,oldplayer);
+			newplayer.id = "player";
 			this.player = videojs("player");
 			this.player.setSrc(uri);
 			this.player.setCurrentTime(this.startTime||0);
