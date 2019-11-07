@@ -1181,7 +1181,7 @@ function registerPlayer( type, object ) {
 			var newplayer = document.createElement("video");
 			oldplayer.parentNode.replaceChild(newplayer,oldplayer);
 			newplayer.id = "player";
-			this.player = videojs("player");
+			this.player = videojs("player",{width:window.innerWidth,height:window.innerHeight});
 			this.player.src(uri);
 			this.player.currentTime(this.startTime||0);
 			//this.player.play();
