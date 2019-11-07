@@ -1176,7 +1176,7 @@ function registerPlayer( type, object ) {
 		*/
 		this.setVideo = function( uri ) {
 			this.videoId = uri;
-			if (player) { return; }
+			//if (player) { return; }
 			var oldplayer = document.getElementById("player");
 			var newplayer = document.createElement("video");
 			newplayer.style = oldplayer.style;
@@ -1186,11 +1186,13 @@ function registerPlayer( type, object ) {
 			this.player = videojs("player");
 			this.player.setSrc(uri);
 			this.player.setCurrentTime(this.startTime||0);
+			this.player.play();
 		};
 
 		this.setVolume = function( volume ) {
-			this.lastVolume = null;
-			this.volume = volume;
+			if ( this.player !== null ) {
+				this.player.setVolume(volume);
+			}
 		};
 
 		this.setStartTime = function( seconds ) {
@@ -1203,10 +1205,6 @@ function registerPlayer( type, object ) {
 				this.player.setCurrentTime(seconds);
 				this.player.play();
 			}
-		};
-
-		this.onRemove = function() {
-			clearInterval( this.interval );
 		};
 
 		/*
@@ -1222,17 +1220,8 @@ function registerPlayer( type, object ) {
 			return player.readyState() == 3;
 		};
 
-		this.think = function() {
-
-			if ( this.player !== null ) {
-				this.player.setVolume(this.volume);
-				this.player.play();
-			}
-
-		};
-
 		this.onReady = function() {
-			this.interval = setInterval( this.think.bind(this), 100 );
+			if ( this.player !== null ) this.player.play();
 		};
 
 	};
