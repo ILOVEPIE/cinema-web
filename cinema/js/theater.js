@@ -1183,8 +1183,10 @@ function registerPlayer( type, object ) {
 			newplayer.id = "player";
 			this.player = videojs("player",{width:window.innerWidth,height:window.innerHeight});
 			this.player.src(uri);
+			this.player.width(window.innerWidth);
+			this.player.width(window.innerHeight);
 			this.player.currentTime(this.startTime||0);
-			//this.player.play();
+			this.player.play();
 		};
 
 		this.setVolume = function( volume ) {
@@ -1216,10 +1218,6 @@ function registerPlayer( type, object ) {
 
 		this.canChangeTime = function() {
 			return player.readyState() == 3;
-		};
-
-		this.onReady = function() {
-			if ( this.player !== null ) this.player.play();
 		};
 
 	};
