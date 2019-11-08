@@ -1183,8 +1183,8 @@ function registerPlayer( type, object ) {
 			newplayer.width = window.innerWidth;
 			newplayer.height= window.innerHeight;
 			newplayer.id = "player";
-			this.player = videojs("player",{width:window.innerWidth,height:window.innerHeight});
-			this.player.src({src:uri,type:'application/x-mpegURL'});
+			this.player = videojs("player",{"techOrder":["html5", "flash"],"width":window.innerWidth,"height":window.innerHeight});
+			this.player.src({src:uri,type:'application/x-mpegURL',overrideNative: true});
 			this.player.dimensions(window.innerWidth,window.innerHeight);
 			this.player.currentTime(this.startTime||0);
 			this.player.play();
