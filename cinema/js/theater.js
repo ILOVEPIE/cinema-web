@@ -1213,7 +1213,7 @@ function registerPlayer( type, object ) {
 		*/
 		this.getCurrentTime = function() {
 			if ( this.player !== null ) {
-				return this.player.getCurrentTime();
+				return this.player.currentTime();
 			}
 		};
 
