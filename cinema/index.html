@@ -67,10 +67,11 @@
 			elem.appendChild(notice);
 			if(typeof(gmod)!=="undefined") gmod.detectFlash(false);
 		}
-		if(typeof(gmod)!=="undefined" && !gmod.detectCodecPatch()){
-			var notice = document.createTextNode("CEF Codec Fix for HTML5 not detected! Some videos may not load, press F12 for installation instructions.");
+		function failedDetectCodecPatch(){
+			var notice = document.createTextNode("CEF Codec Fix for HTML5 not detected! Some videos may not load, press F11 for installation instructions.");
 			elem.appendChild(notice);
 		}
+		if(typeof(gmod)!=="undefined")gmod.detectCodecPatch();
 	</script>
 
 </body>
