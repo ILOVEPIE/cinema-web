@@ -12,7 +12,13 @@ var theater = {
 	hdPlayback: false,
 	player: null,
 	volume: 25,
+	resolution: [1920,1080],
 	syncMaxDiff: 5,
+	
+	setResolution: function(width,height) {
+		this.resolution[0] = width;
+		this.resolution[1] = height;
+	},
 
 	getPlayerContainer: function() {
 		if ( this.playerContainer === null ) {
@@ -1180,12 +1186,12 @@ function registerPlayer( type, object ) {
 			var oldplayer = document.getElementById("player");
 			var newplayer = document.createElement("video");
 			oldplayer.parentNode.replaceChild(newplayer,oldplayer);
-			newplayer.width = window.innerWidth;
-			newplayer.height= window.innerHeight;
+			newplayer.width  = theater.resolution[0];
+			newplayer.height = theater.resolution[1];
 			newplayer.id = "player";
-			this.player = videojs("player",{"techOrder":["html5", "flash"],"width":window.innerWidth,"height":window.innerHeight});
+			this.player = videojs("player",{"techOrder":["html5", "flash"],"width":theater.resolution[0],"height":theater.resolution[1]});
 			this.player.src({src:uri,type:'application/x-mpegURL',overrideNative: true});
-			this.player.dimensions(window.innerWidth,window.innerHeight);
+			this.player.dimensions(theater.resolution[0],theater.resolution[1]);
 			this.player.currentTime(this.startTime||0);
 			this.player.play();
 		};
